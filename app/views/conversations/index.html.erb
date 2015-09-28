@@ -1,0 +1,30 @@
+<!-- 会話の表示 -->
+<div class="test1" id="test1">
+	<% @logs.each do |log| %>
+		<% if log.username == "akari" %>
+		<Div Align="left">
+		  	<p><%= log.username %></p>
+			<h2><%= log.talk %></h2>
+			<p><%= log.time %></p>
+		</div>
+		<% else %>
+		<Div Align="right">
+		  	<p><%= log.username %></p>
+			<h2><%= log.talk %></h2>
+			<p><%= log.time %></p>
+		</div>
+		<% end %>
+	<% end %>
+</div>
+
+<!-- ここから文字入力 -->
+<div>
+<center>
+	<%= form_for @log, :url => {:action => 'create'} do |f| %>
+		<%= f.label :あかりと会話しよう %>
+		<%= f.text_field :talk %>
+		<%= submit_tag "送信" %>
+	<% end %>
+	<%= link_to '履歴を削除', "/conversations/destroy" %>
+</center>
+</div>

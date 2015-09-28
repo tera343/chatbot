@@ -28,7 +28,14 @@ end
 class PatternResponder < Responder
 	def response(input)
 		@dictionary.pattern.each do |ptn_item|
-			if m = input.match(ptn_item['pattern'])
+			p "!-------------------------------!"
+			p ptn_item["pattern"]
+			p "!-------------------------------!"
+			if /#{input}/ =~ ptn_item["pattern"]	#if m = input.match(ptn_item["pattern"])
+				m = input
+				p "!-------------------------------!"
+				p m
+				p "!-------------------------------!"
 				resp = ptn_item["phrases"].split("|")
 				resp = resp[rand(resp.size)]
 				#resp = select_random(ptn_item["phrases"].split("|"))
